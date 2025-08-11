@@ -5,7 +5,9 @@ metadata:
 data:
   SPRING_PROFILES_ACTIVE: prod
   SERVER_PORT: "8080"
-  SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/karate
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-service:5432/karate
+  SPRING_DATASOURCE_USERNAME: karate
+  SPRING_DATASOURCE_PASSWORD: karate
   OTEL_RESOURCE_ATTRIBUTES: "service.name=backend,env=dev"
   OTEL_EXPORTER_OTLP_ENDPOINT: http://collector:4317
   OTEL_EXPORTER_OTLP_PROTOCOL: grpc

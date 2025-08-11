@@ -16,7 +16,7 @@ spec:
       volumes:
         - name: grafana-ini
           hostPath:
-            path: /config/grafana/grafana.ini
+            path: /etc/k8s/config/grafana/grafana.ini
       containers:
         - name: grafana
           image: grafana/grafana:latest

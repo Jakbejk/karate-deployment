@@ -17,6 +17,8 @@ spec:
         - name: video-volume
           persistentVolumeClaim:
             claimName: video-persistent-volume-claim
+      imagePullSecrets:
+        - name: docker-registry-secret
       containers:
         - name: backend-container
           image: ghcr.io/jakbejk/karate-backend:latest
@@ -35,8 +37,12 @@ spec:
             httpGet:
               port: 8080
               path: /actuator/health/liveness
+            initialDelaySeconds: 60
+            failureThreshold: 10
           readinessProbe:
             httpGet:
               port: 8080
               path: /actuator/health/readiness
+            initialDelaySeconds: 60
+            failureThreshold: 10
       restartPolicy: Always
