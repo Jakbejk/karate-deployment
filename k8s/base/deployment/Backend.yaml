@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend
+    spec:
+      volumes:
+        - name: video-volume
+          persistentVolumeClaim:
+            claimName: video-persistent-volume-claim
+      containers:
+        - name: backend-container
+          image: ghcr.io/jakbejk/karate-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: backend-config-map
+          volumeMounts:
+            - mountPath: /var/video
+              subPath: video
+              name: video-volume
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+      restartPolicy: Always
