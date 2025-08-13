@@ -17,7 +17,7 @@ spec:
         - name: docker-registry-secret
       containers:
         - name: frontend-deployment
-          image: ghcr.io/jakbejk/karate-frontend:1.1.2
+          image: ghcr.io/jakbejk/karate-frontend:1.1.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
