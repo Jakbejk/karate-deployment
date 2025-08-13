@@ -10,6 +10,7 @@ spec:
     - secretName: kubalaj-certificate
       hosts:
         - grafana.kubalaj.cz
+        - frontend.kubalaj.cz
   rules:
     - host: grafana.kubalaj.cz
       http:
@@ -21,3 +22,13 @@ spec:
                 name: grafana-service
             pathType: Prefix
             path: /
+    - host: frontend.kubalaj.cz
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix

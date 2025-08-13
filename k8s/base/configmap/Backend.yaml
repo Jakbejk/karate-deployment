@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: backend-config-map
 data:
-  SPRING_PROFILES_ACTIVE: prod
+  SPRING_PROFILES_ACTIVE: test
   SERVER_PORT: "8080"
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-service:5432/karate
   SPRING_DATASOURCE_USERNAME: karate
